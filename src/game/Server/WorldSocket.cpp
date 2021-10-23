@@ -36,6 +36,10 @@
 #include "Anticheat/Anticheat.hpp"
 #include "Config/Config.h"
 
+#ifdef BUILD_ELUNA
+#include "LuaEngine/LuaEngine.h"
+#endif
+
 #include <chrono>
 #include <functional>
 #include <memory>
@@ -237,7 +241,12 @@ bool WorldSocket::ProcessIncomingData()
                             self->Close();
                             return;
                         }
-
+#ifdef BUILD_ELUNA
+                        if (!sWorld.GetEluna()->OnPacketReceive(self->m_session, *pct))
+                        {
+                            return;
+                        }
+#endif
                         if (!self->HandleAuthSession(*pct))
                         {
                             self->Close();
