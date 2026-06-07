@@ -394,7 +394,7 @@ class Map : public GridRefManager<NGridType>
 #endif
 
 #ifdef BUILD_ELUNA
-        Eluna* GetEluna() const {return sElunaMgr -> Get(_elunaInfo); }
+        Eluna* GetEluna() const {return sElunaMgr -> Get(m_elunaInfo); }
         LuaVal lua_data = LuaVal({});
 #endif
 
@@ -554,7 +554,7 @@ class Map : public GridRefManager<NGridType>
 #endif
 
 #ifdef BUILD_ELUNA
-        ElunaInfo _elunaInfo;
+        ElunaInfo m_elunaInfo;
 #endif
 };
 

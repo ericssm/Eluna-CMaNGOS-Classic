@@ -2404,6 +2404,9 @@ class SpellMgr
         void LoadSpellAreas();
         void LoadFacingCasterFlags();
 
+        SpellEntry const* GetSpellEntry(uint32 spellId) const { return spellId < GetMaxSpellId() ? mSpellEntryMap[spellId].get() : nullptr; }
+        uint32 GetMaxSpellId() const { return mSpellEntryMap.size(); }
+
     private:
         SpellChainMap      mSpellChains;
         SpellChainMapNext  mSpellChainsNext;
@@ -2423,6 +2426,8 @@ class SpellMgr
         SpellAreaForAuraMap  mSpellAreaForAuraMap;
         SpellAreaForAreaMap  mSpellAreaForAreaMap;
         SpellFacingFlagMap  mSpellFacingFlagMap;
+
+        SpellEntryMap mSpellEntryMap;
 };
 
 #define sSpellMgr SpellMgr::Instance()
